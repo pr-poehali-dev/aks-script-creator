@@ -16,7 +16,7 @@ export const Step1 = ({ cheatName, setCheatName, onNext }: Step1Props) => {
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor="cheatName" className="text-lg text-purple-300">
+        <Label htmlFor="cheatName" className="text-lg text-orange-300">
           1️⃣ Название чита
         </Label>
         <Input
@@ -24,10 +24,10 @@ export const Step1 = ({ cheatName, setCheatName, onNext }: Step1Props) => {
           value={cheatName}
           onChange={(e) => setCheatName(e.target.value)}
           placeholder="Например: MegaCheat v2.0"
-          className="mt-2 bg-black/40 border-purple-500/50 text-white placeholder:text-gray-500"
+          className="mt-2 bg-black/40 border-orange-500/50 text-white placeholder:text-gray-500"
         />
       </div>
-      <Button onClick={onNext} className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+      <Button onClick={onNext} className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700">
         Далее <Icon name="ArrowRight" className="ml-2" size={20} />
       </Button>
     </div>
@@ -63,15 +63,15 @@ export const Step2 = ({
 }: Step2Props) => {
   return (
     <div className="space-y-4">
-      <Label className="text-lg text-blue-300">2️⃣ Выберите функции</Label>
+      <Label className="text-lg text-red-300">2️⃣ Выберите функции</Label>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
         {availableFeatures.map((feature) => (
           <div
             key={feature.id}
             className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
               selectedFeatures.includes(feature.id)
-                ? 'bg-gradient-to-r from-purple-600/30 to-blue-600/30 border-purple-500'
-                : 'bg-black/30 border-gray-700 hover:border-purple-500/50'
+                ? 'bg-gradient-to-r from-orange-600/30 to-red-600/30 border-orange-500'
+                : 'bg-black/30 border-gray-700 hover:border-orange-500/50'
             }`}
             onClick={() => onFeatureToggle(feature.id)}
           >
@@ -89,25 +89,25 @@ export const Step2 = ({
         ))}
       </div>
 
-      <div className="mt-6 p-4 bg-gradient-to-r from-cyan-900/30 to-teal-900/30 border-2 border-cyan-500/50 rounded-lg">
-        <Label className="text-lg text-cyan-300 mb-3 block">➕ Добавить свою функцию</Label>
+      <div className="mt-6 p-4 bg-gradient-to-r from-yellow-900/30 to-orange-900/30 border-2 border-yellow-500/50 rounded-lg">
+        <Label className="text-lg text-yellow-300 mb-3 block">➕ Добавить свою функцию</Label>
         <div className="space-y-3">
           <Input
             value={customFeatureName}
             onChange={(e) => setCustomFeatureName(e.target.value)}
             placeholder="Название функции (например: Авто-стрельба)"
-            className="bg-black/40 border-cyan-500/50 text-white"
+            className="bg-black/40 border-yellow-500/50 text-white"
           />
           <Textarea
             value={customFeatureCode}
             onChange={(e) => setCustomFeatureCode(e.target.value)}
             placeholder="Lua код функции..."
             rows={4}
-            className="bg-black/40 border-cyan-500/50 text-white font-mono"
+            className="bg-black/40 border-yellow-500/50 text-white font-mono"
           />
           <Button
             onClick={onAddCustomFeature}
-            className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700"
+            className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700"
           >
             <Icon name="Plus" className="mr-2" size={18} />
             Добавить функцию
@@ -116,9 +116,9 @@ export const Step2 = ({
 
         {customFeatures.length > 0 && (
           <div className="mt-4 space-y-2">
-            <Label className="text-sm text-cyan-300">Добавленные функции:</Label>
+            <Label className="text-sm text-yellow-300">Добавленные функции:</Label>
             {customFeatures.map((cf, index) => (
-              <div key={index} className="flex items-center justify-between p-2 bg-black/40 rounded border border-cyan-500/30">
+              <div key={index} className="flex items-center justify-between p-2 bg-black/40 rounded border border-yellow-500/30">
                 <span className="text-white text-sm">{cf.name}</span>
                 <Button
                   onClick={() => onRemoveCustomFeature(index)}
@@ -135,10 +135,10 @@ export const Step2 = ({
       </div>
 
       <div className="flex gap-3">
-        <Button onClick={onPrev} variant="outline" className="flex-1 border-purple-500/50">
+        <Button onClick={onPrev} variant="outline" className="flex-1 border-orange-500/50">
           <Icon name="ArrowLeft" className="mr-2" size={20} /> Назад
         </Button>
-        <Button onClick={onNext} className="flex-1 bg-gradient-to-r from-blue-600 to-pink-600 hover:from-blue-700 hover:to-pink-700">
+        <Button onClick={onNext} className="flex-1 bg-gradient-to-r from-red-600 to-yellow-600 hover:from-red-700 hover:to-yellow-700">
           Далее <Icon name="ArrowRight" className="ml-2" size={20} />
         </Button>
       </div>
@@ -156,15 +156,15 @@ interface Step3Props {
 export const Step3 = ({ menuDesign, setMenuDesign, onPrev, onNext }: Step3Props) => {
   return (
     <div className="space-y-4">
-      <Label className="text-lg text-pink-300">3️⃣ Выберите дизайн меню</Label>
+      <Label className="text-lg text-yellow-300">3️⃣ Выберите дизайн меню</Label>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {['classic', 'modern', 'neon'].map((design) => (
           <div
             key={design}
             className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
               menuDesign === design
-                ? 'bg-gradient-to-r from-pink-600/30 to-purple-600/30 border-pink-500'
-                : 'bg-black/30 border-gray-700 hover:border-pink-500/50'
+                ? 'bg-gradient-to-r from-yellow-600/30 to-orange-600/30 border-yellow-500'
+                : 'bg-black/30 border-gray-700 hover:border-yellow-500/50'
             }`}
             onClick={() => setMenuDesign(design)}
           >
@@ -173,10 +173,10 @@ export const Step3 = ({ menuDesign, setMenuDesign, onPrev, onNext }: Step3Props)
         ))}
       </div>
       <div className="flex gap-3">
-        <Button onClick={onPrev} variant="outline" className="flex-1 border-pink-500/50">
+        <Button onClick={onPrev} variant="outline" className="flex-1 border-yellow-500/50">
           <Icon name="ArrowLeft" className="mr-2" size={20} /> Назад
         </Button>
-        <Button onClick={onNext} className="flex-1 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700">
+        <Button onClick={onNext} className="flex-1 bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700">
           Далее <Icon name="ArrowRight" className="ml-2" size={20} />
         </Button>
       </div>
@@ -195,7 +195,7 @@ interface Step4Props {
 export const Step4 = ({ additionalCode, setAdditionalCode, loading, onPrev, onGenerate }: Step4Props) => {
   return (
     <div className="space-y-4">
-      <Label htmlFor="additionalCode" className="text-lg text-yellow-300">
+      <Label htmlFor="additionalCode" className="text-lg text-orange-300">
         4️⃣ Дополнительный код (опционально)
       </Label>
       <Textarea
@@ -204,21 +204,21 @@ export const Step4 = ({ additionalCode, setAdditionalCode, loading, onPrev, onGe
         onChange={(e) => setAdditionalCode(e.target.value)}
         placeholder="Вставьте свой Lua код..."
         rows={8}
-        className="bg-black/40 border-yellow-500/50 text-white font-mono"
+        className="bg-black/40 border-orange-500/50 text-white font-mono"
       />
       <div className="flex gap-3">
-        <Button onClick={onPrev} variant="outline" className="flex-1 border-yellow-500/50">
+        <Button onClick={onPrev} variant="outline" className="flex-1 border-orange-500/50">
           <Icon name="ArrowLeft" className="mr-2" size={20} /> Назад
         </Button>
         <Button
           onClick={onGenerate}
           disabled={loading}
-          className="flex-1 bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700"
+          className="flex-1 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
         >
           {loading ? (
             <>
               <Icon name="Loader2" className="mr-2 animate-spin" size={20} />
-              Создание...
+              Создание (30 сек)...
             </>
           ) : (
             <>

@@ -1,0 +1,31 @@
+{
+  "tests": [
+    {
+      "name": "Get community cheats",
+      "method": "GET",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "cheats": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Save cheat",
+      "method": "POST",
+      "body": {
+        "action": "save",
+        "cheat_name": "Test Cheat",
+        "activation_code": "TESTXYZ999",
+        "lua_code": "-- Test",
+        "download_link": "https://test.com/file.apk",
+        "selected_features": ["speed"],
+        "user_id": 1
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

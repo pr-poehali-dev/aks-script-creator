@@ -73,28 +73,55 @@ const CheatGenerator = ({ userId }: CheatGeneratorProps) => {
 
     setLoading(true);
 
-    const code = generateActivationCode();
+    setTimeout(async () => {
+      try {
+        const code = generateActivationCode();
 
-    const luaCode = generateLuaCode({
-      cheatName,
-      activationCode: code,
-      selectedFeatures,
-      customFeatures,
-      menuDesign,
-      additionalCode,
-    });
+        const luaCode = generateLuaCode({
+          cheatName,
+          activationCode: code,
+          selectedFeatures,
+          customFeatures,
+          menuDesign,
+          additionalCode,
+        });
 
-    setGeneratedCheat(luaCode);
-    const fakeDownloadLink = `https://aksgod.dev/download/${code}.apk`;
-    setDownloadLink(fakeDownloadLink);
-    
-    setLoading(false);
-    setStep(5);
-    
-    toast({
-      title: 'Чит создан!',
-      description: `Активационный код: ${code}`,
-    });
+        setGeneratedCheat(luaCode);
+        const fakeDownloadLink = `https://aksgod.dev/download/${code}.apk`;
+        setDownloadLink(fakeDownloadLink);
+        
+        await fetch('https://functions.poehali.dev/805ecddb-3309-4d7f-add8-11d9a9421c70', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'save',
+            cheat_name: cheatName,
+            activation_code: code,
+            lua_code: luaCode,
+            download_link: fakeDownloadLink,
+            selected_features: selectedFeatures,
+            custom_features_count: customFeatures.length,
+            menu_design: menuDesign,
+            user_id: userId,
+          }),
+        });
+        
+        setLoading(false);
+        setStep(5);
+        
+        toast({
+          title: 'Чит создан!',
+          description: `Активационный код: ${code}`,
+        });
+      } catch (error) {
+        setLoading(false);
+        toast({
+          variant: 'destructive',
+          title: 'Ошибка',
+          description: 'Не удалось сохранить чит',
+        });
+      }
+    }, 30000);
   };
 
   const nextStep = () => {
@@ -141,9 +168,9 @@ const CheatGenerator = ({ userId }: CheatGeneratorProps) => {
 
   return (
     <div className="space-y-6">
-      <Card className="bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 border-2 border-purple-500/50 animate-glow-pulse">
+      <Card className="bg-gradient-to-br from-orange-900/20 via-red-900/20 to-yellow-900/20 border-2 border-orange-500/50 animate-glow-pulse">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-pink-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-rainbow">
+          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-orange-400 via-red-400 to-yellow-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-rainbow">
             🎮 ИИ Генератор Читов
           </CardTitle>
           <div className="flex gap-2 mt-4">
@@ -152,7 +179,7 @@ const CheatGenerator = ({ userId }: CheatGeneratorProps) => {
                 key={s}
                 className={`h-2 flex-1 rounded-full transition-all ${
                   s <= step
-                    ? 'bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 bg-[length:200%_auto] animate-rainbow'
+                    ? 'bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 bg-[length:200%_auto] animate-rainbow'
                     : 'bg-gray-700'
                 }`}
               />
