@@ -1,0 +1,9 @@
+{
+  "tests": [
+    {
+      "name": "Get all scripts",
+      "method": "GET",
+      "expectedStatus": 200
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "Create new user",
+      "method": "POST",
+      "body": {
+        "username": "testuser123",
+        "password": "testpass123"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
+import Icon from '@/components/ui/icon';
+
+const AdminPanel = () => {
+  const [newUsername, setNewUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleCreateUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!newUsername.trim() || !newPassword.trim()) {
+      toast({
+        variant: 'destructive',
+        title: 'Ошибка',
+        description: 'Заполните все поля',
+      });
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('https://functions.poehali.dev/562446ff-a06e-4eef-9f49-fb5da5e69cf8', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: newUsername, password: newPassword }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: 'Пользователь создан!',
+          description: `Аккаунт ${newUsername} успешно создан`,
+        });
+        setNewUsername('');
+        setNewPassword('');
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Ошибка',
+          description: data.error || 'Не удалось создать пользователя',
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Ошибка',
+        description: 'Не удалось подключиться к серверу',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto">
+      <Card className="border-2 border-accent/30 gamer-glow">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-2xl">
+            <Icon name="Shield" size={24} className="text-accent" />
+            Панель администратора
+          </CardTitle>
+          <CardDescription>
+            Управление пользователями системы AKSGOD
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleCreateUser} className="space-y-6">
+            <div className="bg-accent/10 p-4 rounded-lg border border-accent/30">
+              <h3 className="font-semibold mb-4 flex items-center gap-2">
+                <Icon name="UserPlus" size={20} className="text-accent" />
+                Создать нового пользователя
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="new-username" className="text-foreground">
+                    Никнейм
+                  </Label>
+                  <Input
+                    id="new-username"
+                    type="text"
+                    placeholder="Введите никнейм"
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                    className="border-accent/50 focus:border-accent bg-card"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="new-password" className="text-foreground">
+                    Пароль
+                  </Label>
+                  <Input
+                    id="new-password"
+                    type="text"
+                    placeholder="Введите пароль"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="border-accent/50 focus:border-accent bg-card"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-accent to-primary hover:opacity-90 text-white font-bold h-12 gamer-glow"
+                >
+                  {loading ? (
+                    <>
+                      <Icon name="Loader2" className="mr-2 h-5 w-5 animate-spin" />
+                      Создание...
+                    </>
+                  ) : (
+                    <>
+                      <Icon name="UserPlus" className="mr-2 h-5 w-5" />
+                      Создать пользователя
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+
+            <div className="bg-primary/10 p-4 rounded-lg border border-primary/30">
+              <h4 className="font-semibold text-sm flex items-center gap-2 mb-2">
+                <Icon name="Info" size={16} className="text-primary" />
+                Информация:
+              </h4>
+              <ul className="text-sm space-y-1 text-muted-foreground">
+                <li>• Новые пользователи создаются с обычными правами</li>
+                <li>• Вы не можете заходить под созданными аккаунтами</li>
+                <li>• Пользователи получат доступ к библиотеке и AI редактору</li>
+                <li>• Админские права есть только у вашего аккаунта</li>
+              </ul>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default AdminPanel;
