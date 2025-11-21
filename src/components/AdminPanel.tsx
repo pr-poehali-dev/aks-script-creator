@@ -61,27 +61,27 @@ const AdminPanel = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <Card className="border-2 border-accent/30 gamer-glow">
+      <Card className="border-4 border-pink-500/50 animate-glow-pulse bg-gradient-to-br from-pink-900/20 via-purple-900/20 to-red-900/20">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-2xl">
-            <Icon name="Shield" size={24} className="text-accent" />
+          <CardTitle className="flex items-center gap-2 text-2xl bg-gradient-to-r from-pink-400 via-purple-400 to-red-400 bg-clip-text text-transparent">
+            <Icon name="Shield" size={24} className="text-pink-500" />
             Панель администратора
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-purple-300">
             Управление пользователями системы AKSGOD
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleCreateUser} className="space-y-6">
-            <div className="bg-accent/10 p-4 rounded-lg border border-accent/30">
-              <h3 className="font-semibold mb-4 flex items-center gap-2">
-                <Icon name="UserPlus" size={20} className="text-accent" />
+            <div className="bg-gradient-to-r from-pink-900/30 to-purple-900/30 p-4 rounded-lg border-2 border-pink-500/50">
+              <h3 className="font-semibold mb-4 flex items-center gap-2 text-pink-300">
+                <Icon name="UserPlus" size={20} className="text-pink-400" />
                 Создать нового пользователя
               </h3>
               
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="new-username" className="text-foreground">
+                  <Label htmlFor="new-username" className="text-purple-300 font-semibold">
                     Никнейм
                   </Label>
                   <Input
@@ -90,12 +90,12 @@ const AdminPanel = () => {
                     placeholder="Введите никнейм"
                     value={newUsername}
                     onChange={(e) => setNewUsername(e.target.value)}
-                    className="border-accent/50 focus:border-accent bg-card"
+                    className="border-2 border-pink-500/50 focus:border-purple-500 bg-black/40 text-white"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="new-password" className="text-foreground">
+                  <Label htmlFor="new-password" className="text-pink-300 font-semibold">
                     Пароль
                   </Label>
                   <Input
@@ -104,14 +104,14 @@ const AdminPanel = () => {
                     placeholder="Введите пароль"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="border-accent/50 focus:border-accent bg-card"
+                    className="border-2 border-purple-500/50 focus:border-pink-500 bg-black/40 text-white"
                   />
                 </div>
 
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-accent to-primary hover:opacity-90 text-white font-bold h-12 gamer-glow"
+                  className="w-full bg-gradient-to-r from-pink-600 via-purple-600 to-red-600 bg-[length:200%_auto] hover:bg-[position:100%] text-white font-bold h-12 shadow-lg shadow-pink-500/50"
                 >
                   {loading ? (
                     <>
@@ -128,12 +128,12 @@ const AdminPanel = () => {
               </div>
             </div>
 
-            <div className="bg-primary/10 p-4 rounded-lg border border-primary/30">
-              <h4 className="font-semibold text-sm flex items-center gap-2 mb-2">
-                <Icon name="Info" size={16} className="text-primary" />
+            <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 p-4 rounded-lg border-2 border-purple-500/50">
+              <h4 className="font-semibold text-sm flex items-center gap-2 mb-2 text-purple-300">
+                <Icon name="Info" size={16} className="text-purple-400" />
                 Информация:
               </h4>
-              <ul className="text-sm space-y-1 text-muted-foreground">
+              <ul className="text-sm space-y-1 text-gray-300">
                 <li>• Новые пользователи создаются с обычными правами</li>
                 <li>• Вы не можете заходить под созданными аккаунтами</li>
                 <li>• Пользователи получат доступ к библиотеке и AI редактору</li>

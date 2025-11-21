@@ -61,32 +61,33 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 animate-float"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-blue-600/20 via-pink-600/20 to-yellow-600/20 animate-float"></div>
       
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/30 rounded-full blur-3xl animate-glow-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-glow-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-accent/30 rounded-full blur-3xl animate-glow-pulse"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 bg-purple-500/30 rounded-full blur-3xl animate-glow-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/30 rounded-full blur-3xl animate-glow-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-pink-500/30 rounded-full blur-3xl animate-glow-pulse"></div>
+        <div className="absolute top-40 right-40 w-72 h-72 bg-cyan-500/30 rounded-full blur-3xl animate-glow-pulse"></div>
       </div>
 
-      <Card className="w-full max-w-md relative z-10 border-2 animate-rgb-border gamer-glow">
+      <Card className="w-full max-w-md relative z-10 border-4 animate-rgb-border bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-pink-900/40 backdrop-blur-xl shadow-2xl">
         <CardHeader className="space-y-1 text-center">
           <div className="flex justify-center mb-4">
-            <div className="w-20 h-20 bg-gradient-to-br from-primary via-secondary to-accent rounded-lg flex items-center justify-center animate-float gamer-glow">
+            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 via-blue-500 to-pink-500 rounded-lg flex items-center justify-center animate-float shadow-lg shadow-purple-500/50 border-2 border-white/20">
               <Icon name="Shield" size={40} className="text-white" />
             </div>
           </div>
-          <CardTitle className="text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <CardTitle className="text-4xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 via-pink-400 to-yellow-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-rainbow">
             AKSGOD
           </CardTitle>
-          <CardDescription className="text-lg">
+          <CardDescription className="text-lg bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent font-semibold">
             Платформа для создания читов Black Russia
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-foreground">Никнейм</Label>
+              <Label htmlFor="username" className="text-purple-300 font-semibold">Никнейм</Label>
               <Input
                 id="username"
                 type="text"
@@ -94,11 +95,11 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="border-primary/50 focus:border-primary bg-card"
+                className="border-2 border-purple-500/50 focus:border-blue-500 bg-black/40 text-white placeholder:text-gray-500"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-foreground">Пароль</Label>
+              <Label htmlFor="password" className="text-blue-300 font-semibold">Пароль</Label>
               <Input
                 id="password"
                 type="password"
@@ -106,12 +107,12 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="border-primary/50 focus:border-primary bg-card"
+                className="border-2 border-blue-500/50 focus:border-pink-500 bg-black/40 text-white placeholder:text-gray-500"
               />
             </div>
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-primary via-secondary to-accent hover:opacity-90 text-white font-bold text-lg h-12 gamer-glow"
+              className="w-full bg-gradient-to-r from-purple-600 via-blue-600 via-pink-600 to-purple-600 bg-[length:200%_auto] hover:bg-[position:100%] animate-rainbow text-white font-bold text-lg h-12 shadow-lg shadow-purple-500/50"
               disabled={loading}
             >
               {loading ? (

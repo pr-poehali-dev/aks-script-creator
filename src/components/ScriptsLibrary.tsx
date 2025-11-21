@@ -62,10 +62,10 @@ const ScriptsLibrary = ({ userId }: ScriptsLibraryProps) => {
   };
 
   const categoryColors: Record<string, string> = {
-    'Визуализация': 'bg-primary',
-    'Экономика': 'bg-secondary',
-    'Передвижение': 'bg-accent',
-    'Боевая система': 'bg-destructive',
+    'Визуализация': 'bg-gradient-to-r from-purple-600 to-blue-600',
+    'Экономика': 'bg-gradient-to-r from-blue-600 to-cyan-600',
+    'Передвижение': 'bg-gradient-to-r from-pink-600 to-purple-600',
+    'Боевая система': 'bg-gradient-to-r from-red-600 to-orange-600',
   };
 
   if (loading) {
@@ -82,12 +82,12 @@ const ScriptsLibrary = ({ userId }: ScriptsLibraryProps) => {
         {scripts.map((script) => (
           <Card
             key={script.id}
-            className="border-2 border-primary/30 hover:border-primary transition-all cursor-pointer hover:gamer-glow group"
+            className="border-2 border-purple-500/30 hover:border-blue-500 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 transition-all cursor-pointer hover:animate-glow-pulse group hover:shadow-xl hover:shadow-purple-500/30"
             onClick={() => setSelectedScript(script)}
           >
             <CardHeader>
               <div className="flex items-start justify-between gap-2">
-                <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent group-hover:from-pink-400 group-hover:to-purple-400 transition-all">
                   {script.title}
                 </CardTitle>
                 <Badge className={`${categoryColors[script.category] || 'bg-muted'} text-white shrink-0`}>
@@ -101,7 +101,7 @@ const ScriptsLibrary = ({ userId }: ScriptsLibraryProps) => {
             <CardContent>
               <Button
                 variant="outline"
-                className="w-full border-primary/50 hover:bg-primary/20 group-hover:border-primary"
+                className="w-full border-2 border-purple-500/50 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 hover:text-white transition-all"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedScript(script);
@@ -116,9 +116,9 @@ const ScriptsLibrary = ({ userId }: ScriptsLibraryProps) => {
       </div>
 
       <Dialog open={!!selectedScript} onOpenChange={() => setSelectedScript(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto border-2 border-primary/50 gamer-glow">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto border-4 border-purple-500/50 animate-glow-pulse bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-pink-900/40 backdrop-blur-xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <DialogTitle className="text-2xl bg-gradient-to-r from-purple-400 via-blue-400 to-pink-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-rainbow">
               {selectedScript?.title}
             </DialogTitle>
             <DialogDescription>
@@ -130,14 +130,14 @@ const ScriptsLibrary = ({ userId }: ScriptsLibraryProps) => {
             <div className="space-y-6 mt-4">
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-lg flex items-center gap-2">
-                    <Icon name="Code" size={20} className="text-primary" />
+                  <h3 className="font-semibold text-lg flex items-center gap-2 text-purple-300">
+                    <Icon name="Code" size={20} className="text-purple-400" />
                     Код скрипта
                   </h3>
                   <Button
                     size="sm"
                     onClick={() => copyToClipboard(selectedScript.code)}
-                    className="bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
                   >
                     <Icon name="Copy" size={16} className="mr-2" />
                     Копировать
@@ -146,25 +146,25 @@ const ScriptsLibrary = ({ userId }: ScriptsLibraryProps) => {
                 <Textarea
                   value={selectedScript.code}
                   readOnly
-                  className="font-mono text-sm h-64 bg-card border-primary/30"
+                  className="font-mono text-sm h-64 bg-black/60 border-2 border-purple-500/50 text-green-400"
                 />
               </div>
 
               <div>
-                <h3 className="font-semibold text-lg mb-2 flex items-center gap-2">
-                  <Icon name="BookOpen" size={20} className="text-secondary" />
+                <h3 className="font-semibold text-lg mb-2 flex items-center gap-2 text-blue-300">
+                  <Icon name="BookOpen" size={20} className="text-blue-400" />
                   Инструкция по активации
                 </h3>
-                <div className="bg-card p-4 rounded-lg border border-primary/30">
-                  <p className="whitespace-pre-line text-sm">{selectedScript.instructions}</p>
+                <div className="bg-black/60 p-4 rounded-lg border-2 border-blue-500/50">
+                  <p className="whitespace-pre-line text-sm text-gray-300">{selectedScript.instructions}</p>
                 </div>
               </div>
 
               <div className="flex gap-2">
-                <Badge className={`${categoryColors[selectedScript.category] || 'bg-muted'} text-white`}>
+                <Badge className={`${categoryColors[selectedScript.category] || 'bg-gradient-to-r from-gray-600 to-gray-700'} text-white shadow-lg`}>
                   {selectedScript.category}
                 </Badge>
-                <Badge variant="outline" className="border-primary/50">
+                <Badge variant="outline" className="border-2 border-pink-500/50 text-pink-400">
                   <Icon name="Calendar" size={14} className="mr-1" />
                   {new Date(selectedScript.created_at).toLocaleDateString('ru-RU')}
                 </Badge>
