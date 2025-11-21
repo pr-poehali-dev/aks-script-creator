@@ -122,10 +122,7 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
               {loading ? 'Вход...' : 'Войти'}
             </Button>
           </form>
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            <p>Демо аккаунт:</p>
-            <p className="text-primary font-medium">AKS / 11122233</p>
-          </div>
+
         </CardContent>
       </Card>
     </div>

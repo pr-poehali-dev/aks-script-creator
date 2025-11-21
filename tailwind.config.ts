@@ -87,17 +87,24 @@ export default {
 				},
 				'glow-pulse': {
 					'0%, 100%': {
-						boxShadow: '0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(14, 165, 233, 0.3)'
+						boxShadow: '0 0 25px rgba(147, 51, 234, 0.6), 0 0 50px rgba(0, 200, 255, 0.4), 0 0 75px rgba(255, 0, 255, 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 30px rgba(139, 92, 246, 0.8), 0 0 60px rgba(14, 165, 233, 0.5)'
+						boxShadow: '0 0 35px rgba(147, 51, 234, 0.9), 0 0 70px rgba(0, 200, 255, 0.6), 0 0 100px rgba(255, 0, 255, 0.5)'
 					}
 				},
 				'rgb-border': {
-					'0%': { borderColor: '#8B5CF6' },
-					'33%': { borderColor: '#0EA5E9' },
-					'66%': { borderColor: '#D946EF' },
-					'100%': { borderColor: '#8B5CF6' }
+					'0%': { borderColor: '#9333ea' },
+					'20%': { borderColor: '#00c8ff' },
+					'40%': { borderColor: '#00ff88' },
+					'60%': { borderColor: '#ff00ff' },
+					'80%': { borderColor: '#ffff00' },
+					'100%': { borderColor: '#9333ea' }
+				},
+				'rainbow': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
 				},
 				'float': {
 					'0%, 100%': { transform: 'translateY(0px)' },
@@ -108,8 +115,9 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-				'rgb-border': 'rgb-border 3s linear infinite',
-				'float': 'float 3s ease-in-out infinite'
+				'rgb-border': 'rgb-border 5s linear infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'rainbow': 'rainbow 6s ease infinite'
 			}
 		}
 	},

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 import ScriptsLibrary from '@/components/ScriptsLibrary';
-import AIEditor from '@/components/AIEditor';
+import CheatGenerator from '@/components/CheatGenerator';
 import AdminPanel from '@/components/AdminPanel';
 
 interface User {
@@ -69,8 +69,8 @@ const Dashboard = ({ user, onLogout }: DashboardProps) => {
               value="ai-editor"
               className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-secondary data-[state=active]:to-accent data-[state=active]:text-white"
             >
-              <Icon name="Sparkles" size={18} className="mr-2" />
-              AI Редактор
+              <Icon name="Wand2" size={18} className="mr-2" />
+              Генератор читов
             </TabsTrigger>
             {user.is_admin && (
               <TabsTrigger
@@ -88,7 +88,7 @@ const Dashboard = ({ user, onLogout }: DashboardProps) => {
           </TabsContent>
 
           <TabsContent value="ai-editor" className="space-y-4">
-            <AIEditor userId={user.id} />
+            <CheatGenerator userId={user.id} />
           </TabsContent>
 
           {user.is_admin && (

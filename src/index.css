@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 217 33% 7%;
+    --background: 240 10% 5%;
     --foreground: 0 0% 100%;
 
     --card: 220 30% 10%;
@@ -13,16 +13,16 @@
     --popover: 220 30% 10%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 262 83% 58%;
+    --primary: 270 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 198 93% 60%;
+    --secondary: 180 100% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 217 33% 15%;
     --muted-foreground: 215 16% 65%;
 
-    --accent: 328 86% 70%;
+    --accent: 330 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -45,7 +45,7 @@
   }
 
   .dark {
-    --background: 217 33% 7%;
+    --background: 240 10% 5%;
     --foreground: 0 0% 100%;
 
     --card: 220 30% 10%;
@@ -54,16 +54,16 @@
     --popover: 220 30% 10%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 262 83% 58%;
+    --primary: 270 100% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 198 93% 60%;
+    --secondary: 180 100% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 217 33% 15%;
     --muted-foreground: 215 16% 65%;
 
-    --accent: 328 86% 70%;
+    --accent: 330 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -107,10 +107,36 @@
 
 .gamer-glow {
   box-shadow:
-    0 0 20px rgba(139, 92, 246, 0.5),
-    0 0 40px rgba(14, 165, 233, 0.3);
+    0 0 20px rgba(147, 51, 234, 0.6),
+    0 0 40px rgba(0, 200, 255, 0.4),
+    0 0 60px rgba(255, 0, 255, 0.3);
 }
 
 .rgb-glow {
   animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes rainbow-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rainbow-gradient {
+  background: linear-gradient(
+    90deg,
+    #9333ea 0%,
+    #00c8ff 25%,
+    #00ff88 50%,
+    #ff00ff 75%,
+    #9333ea 100%
+  );
+  background-size: 200% 200%;
+  animation: rainbow-bg 5s ease infinite;
 }
